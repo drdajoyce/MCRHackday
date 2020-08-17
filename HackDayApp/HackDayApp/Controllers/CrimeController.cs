@@ -10,11 +10,11 @@ namespace HackDayApp.Controllers
 {
     public class CrimeController :Controller
     {
-        public IActionResult GetCrimes()
+        public IActionResult GetCrimes(string latitude, string longitude)
         {
         List<Crime> model = null;
         var client = new HttpClient();
-        var task = client.GetAsync("https://data.police.uk/api/crimes-at-location?date=2020-03&lat=52.629729&lng=-1.131592")
+        var task = client.GetAsync($"https://data.police.uk/api/crimes-at-location?date=2020-03&lat={latitude}lng={longitude}")
           .ContinueWith((taskwithresponse) =>
           {
               var response = taskwithresponse.Result;
