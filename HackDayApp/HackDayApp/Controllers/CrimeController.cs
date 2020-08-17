@@ -13,15 +13,17 @@ namespace HackDayApp.Controllers
 
         public IActionResult GetCrimes(string latitude, string longitude)
         {
-        List<Crime> model = null;
+        CrimeList model = new CrimeList();
         var client = new HttpClient();
-            var task = client.GetAsync($"https://data.police.uk/api/crimes-at-location?date=2020-03&lat={latitude}&lng={longitude}")
+            var task = client.GetAsync($"https://data.police.uk/api/crimes-street/all-crime?lat={latitude}&lng={longitude}&date=2020-06")
               .ContinueWith((taskwithresponse) =>
           {
               var response = taskwithresponse.Result;
               var jsonString = response.Content.ReadAsStringAsync();
               jsonString.Wait();
-              model = JsonSerializer.Deserialize<List<Crime>>(jsonString.Result);
+              model.crimes = JsonSerializer.Deserialize<List<Crime>>(jsonString.Result);
+              model.centralLatitude = latitude;
+              model.centralLongitude = longitude;
           });
         task.Wait();
 

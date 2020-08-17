@@ -9,5 +9,7 @@ namespace HackDayApp
     public class Crime
     {
         public string category { get; set; }
+        public string latitude { get; set; }
+        public string longitude { get; set; }
     }
 }

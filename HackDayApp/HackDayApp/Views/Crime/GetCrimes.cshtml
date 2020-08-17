@@ -1,10 +1,26 @@
-﻿@model List<Crime>
+﻿@model CrimeList
 @{
     ViewData["Title"] = "Crime";
 }
+<link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css" rel="stylesheet" />
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js"></script>
+<script>
+    mapboxgl.accessToken = "pk.eyJ1IjoidWtkam95IiwiYSI6ImNrZHlqNGFxOTNibXMycXRhbjQyaDlnd2IifQ.81_FU3fFNAGtVqmF5RAF4g";
+</script>
+<script src="/js/mapkick.js"></script>
 
 <h1>Crime</h1>
-@foreach(var crime in Model)
+
+<div id="map" style="height: 400px;"></div>
+
+<script>
+    new Mapkick.Map("map", [{ latitude: @Model.centralLatitude, longitude: @Model.centralLongitude, tooltip: "Hello" }]);
+</script>
+
+@foreach (var crime in Model.crimes.GroupBy(crime => crime.category))
 {
-    <p>@crime.category</p>
+
+    <p>Caution! crime @crime.Key occurred @crime.Count() times in your area!</p>
 }
+
+
