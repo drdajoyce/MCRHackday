@@ -14,7 +14,9 @@
 <div id="map" style="height: 400px;"></div>
 
 <script>
-    new Mapkick.Map("map", [{ latitude: @Model.centralLatitude, longitude: @Model.centralLongitude, tooltip: "Hello" }]);
+    var data = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.crimes.Select(crime => new {latitude = crime.location.latitude, longitude = crime.location.longitude  })));
+
+    new Mapkick.Map("map", data);
 </script>
 
 @foreach (var crime in Model.crimes.GroupBy(crime => crime.category))
@@ -22,5 +24,6 @@
 
     <p>Caution! crime @crime.Key occurred @crime.Count() times in your area!</p>
 }
+
 
 

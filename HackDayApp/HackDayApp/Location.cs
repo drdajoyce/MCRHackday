@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace HackDayApp
 {
-    public class Crime
+    public class Location
     {
-        public string category { get; set; }
-        public Location location { get; set; }
+        public string latitude { get; set; }
+        public string longitude { get; set; }
     }
 }
