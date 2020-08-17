@@ -1,0 +1,10 @@
+﻿@model List<Crime>
+@{
+    ViewData["Title"] = "Crime";
+}
+
+<h1>Crime</h1>
+@foreach(var crime in Model)
+{
+    <p>@crime.category</p>
+};
