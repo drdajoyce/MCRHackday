@@ -21,7 +21,7 @@ namespace HackDayApp.Controllers
               var response = taskwithresponse.Result;
               var jsonString = response.Content.ReadAsStringAsync();
               jsonString.Wait();
-              model.crimes = JsonSerializer.Deserialize<List<Crime>>(jsonString.Result);
+              model.crimes = JsonSerializer.Deserialize<List<Crime>>(jsonString.Result) ?? null;
               model.centralLatitude = latitude;
               model.centralLongitude = longitude;
           });
