@@ -10,6 +10,7 @@ namespace HackDayApp.Controllers
 {
     public class CrimeController :Controller
     {
+
         public IActionResult GetCrimes(string latitude, string longitude)
         {
         List<Crime> model = null;
