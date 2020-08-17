@@ -1,11 +1,22 @@
-﻿@{
+﻿@model UserLocation
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>Please enter the latitude and longitude for your current location below:</p>
 </div>
+
+<form method="post" asp-controller="Crime" asp-action="GetCrimes">
+    <label for="latitude">Latitude:</label>
+    <input type="text" asp-for="Latitude" />
+    <label for="longitude">Longitude:</label>
+    <input type="text" asp-for="Longitude" />
+
+    <button type="submit">Submit</button>
+</form>
 
 <script>fetch('https://data.police.uk/api/crimes-at-location?date=2020-03&lat=52.629727&lng=-1.131792https://data.police.uk/api/crimes-at-location?date=2020-03&lat=52.629727&lng=-1.131792')    .then(response => response.json())    .then(data => );
 </script>
